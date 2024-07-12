@@ -36,6 +36,17 @@ import app.cash.paykit.logging.CashAppLoggerImpl
 import kotlin.time.Duration.Companion.seconds
 
 interface CashAppPay {
+  /**
+   * Create customer request given a [CashAppPayPaymentAction].
+   *
+   * Must be called from a background thread.
+   *
+   * @param paymentAction A wrapper class that contains all of the necessary ingredients for building a customer requests.
+   *                      Look at [PayKitPaymentAction] for more details.
+   * @param redirectUri The URI for Cash App to redirect back to your app. If you do not set this, back navigation from CashApp might not work as intended.
+   */
+  @WorkerThread
+  fun createCustomerRequest(paymentAction: CashAppPayPaymentAction, redirectUri: String?)
 
   /**
    * Create customer request given a [CashAppPayPaymentAction].

@@ -120,6 +120,10 @@ internal class CashAppPayImpl(
     analyticsEventDispatcher.sdkInitialized()
   }
 
+  override fun createCustomerRequest(paymentAction: CashAppPayPaymentAction, redirectUri: String?) {
+    createCustomerRequest(listOf(paymentAction), redirectUri, null)
+  }
+
   override fun createCustomerRequest(paymentAction: CashAppPayPaymentAction, redirectUri: String?, referenceId: String?) {
     createCustomerRequest(listOf(paymentAction), redirectUri, referenceId)
   }

@@ -76,7 +76,7 @@ class CashAppPayStateTests {
     val listener = mockk<CashAppPayListener>(relaxed = true)
     payKit.registerForStateUpdates(listener)
 
-    every { networkManager.createCustomerRequest(any(), any(), any()) } returns NetworkResult.failure(
+    every { networkManager.createCustomerRequest(any(), any(), any(), any()) } returns NetworkResult.failure(
       Exception("bad"),
     )
 
@@ -177,6 +177,7 @@ class CashAppPayStateTests {
     every { customerTopLevelResponse.data.customerResponseData } returns customerResponseData
     every {
       networkManager.createCustomerRequest(
+        any(),
         any(),
         any(),
         any(),
